@@ -10,7 +10,7 @@ def install(fileCheckKey):
 	if os.path.isfile('/etc/elasticsearch/elasticsearch.yml'):
 		os.popen('sudo service elasticsearch start').read()
 		while True:
-			elasticVersion=os.popen("curl -XGET 'localhost:9200'").read()
+			elasticVersion=os.popen("curl -XGET '10.85.2.150:59200'").read()
 			try:
 				jsonStuff=json.loads(elasticVersion)
 				if jsonStuff['tagline'] == "You Know, for Search":
@@ -54,8 +54,8 @@ def install(fileCheckKey):
 		sleep(10)
 		while True:
 			#writeSsIndex = os.popen(
-			#	'curl -XPUT \'localhost:9200/sweet_security?pretty\' -H \'Content-Type: application/json\' -d\' {"mappings" : {"ports" : {"properties" : {"mac" : {"type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "port" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}},"protocol" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}},"name" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}},  "product" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "version" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "lastSeen": { "type" : "date" }}}, "devices" : { "properties" : { "hostname" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "nickname" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "ip4" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "mac" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "vendor" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "ignore" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "active" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "defaultFwAction" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "isolate" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "firstSeen" : { "type" : "date" }, "lastSeen" : { "type" : "date" }}}, "firewallProfiles" : { "properties" : { "mac" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "destination" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "action" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}}}}}\'').read()
-			ssIndex='curl -XPUT \'localhost:9200/sweet_security?pretty\' -H \'Content-Type: application/json\' -d\'' \
+			#	'curl -XPUT \'10.85.2.150:59200/sweet_security?pretty\' -H \'Content-Type: application/json\' -d\' {"mappings" : {"ports" : {"properties" : {"mac" : {"type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "port" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}},"protocol" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}},"name" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}},  "product" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "version" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "lastSeen": { "type" : "date" }}}, "devices" : { "properties" : { "hostname" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "nickname" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "ip4" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "mac" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "vendor" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "ignore" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "active" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "defaultFwAction" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "isolate" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "firstSeen" : { "type" : "date" }, "lastSeen" : { "type" : "date" }}}, "firewallProfiles" : { "properties" : { "mac" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "destination" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}, "action" : { "type" : "text", "fields": {"keyword": {"type": "keyword"}}}}}}}\'').read()
+			ssIndex='curl -XPUT \'10.85.2.150:59200/sweet_security?pretty\' -H \'Content-Type: application/json\' -d\'' \
 					' {"mappings" : {' \
 					'   "ports" : {"properties" : {' \
 					'     "mac" : {"type" : "text", "fields": {"keyword": {"type": "keyword"}}}, ' \
@@ -107,7 +107,7 @@ def install(fileCheckKey):
 			# Sleep 10 seconds to give ES time to get started
 			sleep(10)
 		while True:
-			ssAlertIndex= 'curl -XPUT \'localhost:9200/sweet_security_alerts?pretty\' -H \'Content-Type: application/json\' -d\'{ ' \
+			ssAlertIndex= 'curl -XPUT \'10.85.2.150:59200/sweet_security_alerts?pretty\' -H \'Content-Type: application/json\' -d\'{ ' \
 				'  "mappings" : { ' \
 				'    "alerts" : { "properties" : {  ' \
 				'      "source" : { "type" : "text", "fields": {"raw": {"type": "keyword"}}}, ' \
@@ -148,7 +148,7 @@ def install(fileCheckKey):
 			print e
 			pass
 		while True:
-			tardisIndex='curl -XPUT \'localhost:9200/tardis?pretty\' -H \'Content-Type: application/json\' -d\'' \
+			tardisIndex='curl -XPUT \'10.85.2.150:59200/tardis?pretty\' -H \'Content-Type: application/json\' -d\'' \
 					' {"mappings" : {' \
 					'   "known_dnsqueries" : {"properties" : {' \
 					'     "mac" : {"type" : "text", "fields": {"keyword": {"type": "keyword"}}}, ' \
